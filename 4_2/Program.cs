@@ -1,17 +1,19 @@
-﻿Console.WriteLine("Введите размерность массива (например 4 => 4*4): ");
-int size = int.Parse(Console.ReadLine());
-int[,] matrix = new int[size, size];
-for (int rows = 0; rows < size; rows++)
+﻿Console.WriteLine("Введите количество строк массива: ");
+int sizeRows = int.Parse(Console.ReadLine());
+Console.WriteLine("Введите количество столбцов массива: ");
+int sizeCol = int.Parse(Console.ReadLine());
+int[,] matrix = new int[sizeRows, sizeCol];
+for (int rows = 0; rows < sizeRows; rows++)
 {
-    for (int col = 0; col < size; col++)
+    for (int col = 0; col < sizeCol; col++)
     {
         matrix[rows, col] = Random.Shared.Next(-99, 100);
     }
 }
 Console.WriteLine("Ваш массив:");
-for (int rows = 0; rows < size; rows++)
+for (int rows = 0; rows < sizeRows; rows++)
 {
-    for (int col = 0; col < size; col++)
+    for (int col = 0; col < sizeCol; col++)
     {
         Console.Write(matrix[rows, col] + "\t");
     }
@@ -39,9 +41,9 @@ while (true)
         case 1:
             int numOfPos = 0;
             int numOfNeg = 0;
-            for(int rows = 0; rows < size; rows++)
+            for(int rows = 0; rows < sizeRows; rows++)
             {
-                for(int col = 0; col < size; col++)
+                for(int col = 0; col < sizeCol; col++)
                 {
                     if (matrix[rows, col] > 0) numOfPos++;
                     else if (matrix[rows, col] < 0) numOfNeg++;
@@ -51,13 +53,13 @@ while (true)
             Console.WriteLine($"Количество отрицательных чисел в матрице {numOfNeg}");
             break;
         case 2:
-            for(int rows = 0; rows < size; rows++)
+            for(int rows = 0; rows < sizeRows; rows++)
             {
                 
-                for(int col = 0; col < size; col++)
+                for(int col = 0; col < sizeCol; col++)
                 {
                     int minId = col;
-                    for(int colTemp = col; colTemp < size; colTemp++)
+                    for(int colTemp = col; colTemp < sizeCol; colTemp++)
                     {
                         if (matrix[rows, minId] > matrix[rows, colTemp]) minId = colTemp;
                     }
@@ -68,21 +70,21 @@ while (true)
             }
             break;
         case 3:
-            for(int col = 0; col < size; col++)
+            for(int col = 0; col < sizeCol; col++)
             {
-                for (int rows = 0; rows < size / 2; rows++)
+                for (int rows = 0; rows < sizeRows / 2; rows++)
                 {
                     int temp = matrix[rows, col];
-                    matrix[rows, col] = matrix[size - rows - 1, col];
-                    matrix[size - rows - 1, col] = temp;
+                    matrix[rows, col] = matrix[sizeRows - rows - 1, col];
+                    matrix[sizeRows - rows - 1, col] = temp;
                 }
             }
             break;
         case 4:
             Console.WriteLine("Ваш массив:");
-            for (int rows = 0; rows < size; rows++)
+            for (int rows = 0; rows < sizeRows; rows++)
             {
-                for (int col = 0; col < size; col++)
+                for (int col = 0; col < sizeCol; col++)
                 {
                     Console.Write(matrix[rows, col] + "\t");
                 }

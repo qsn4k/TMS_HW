@@ -44,7 +44,19 @@ while (true)
             Console.WriteLine($"Самая низкая оценка: {min}");
             break;
         case 3:
+            temp = 0;
+            for (int i = 0; i < length; i++)
+            {
+                temp += arrayStudent[i];
+            }
+            result = temp / (double)length;
+            int resPol = 0;
+            foreach (int item in arrayStudent)
+            {
+                if ((double)item >= result) resPol++;     
+            }
             Console.WriteLine($"Количество студентов = {length}");
+            Console.WriteLine($"Количество студентов с оценкой выше средней= {resPol}");
             break;
         case 0:
             return 0;
