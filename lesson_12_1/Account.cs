@@ -21,7 +21,7 @@ namespace lesson_12_1
             {
                 Console.Write("Введите ваш логин: ");
                 string loginReg = Console.ReadLine();
-                if (loginReg.IndexOf(' ') >= 0 || loginReg.Length >= 20)
+                if (loginReg.IndexOf(' ') >= 0 || loginReg.Length >= 20 || loginReg == "")
                    throw new WrongLoginExpection("Ошибка ввода логина");
                 
                 login = loginReg;
