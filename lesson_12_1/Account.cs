@@ -14,25 +14,27 @@ namespace lesson_12_1
 
         private string confirmPassword { get; set; }
 
-        Account(string login, string password, string confirmPassword)
-        {
-            
-        }
 
-        private bool UserRegistration()
+        public bool UserRegistration()
         {
             try
             {
                 Console.Write("Введите ваш логин: ");
                 string loginReg = Console.ReadLine();
                 if (loginReg.IndexOf(' ') >= 0 || loginReg.Length >= 20)
-                    new WrongLoginExpection("Ошибка ввода логина");
+                   throw new WrongLoginExpection("Ошибка ввода логина");
                 
                 login = loginReg;
             }
-            catch (WrongLoginExpection ex)
+            catch (WrongPasswordExpection ex)
             {
                 Console.WriteLine(ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
             }
 
             try
@@ -40,14 +42,19 @@ namespace lesson_12_1
                 Console.Write("Введите ваш пароль: ");
                 string passReg = Console.ReadLine();
                 if (passReg.IndexOf(' ') >= 0 || passReg.Length >= 20)
-                    new WrongPasswordExpection("Ошибка ввода пароля");
+                    throw new WrongPasswordExpection("Ошибка ввода пароля");
                 else
                 {
+                    bool isCheckDigital = false;
                     foreach (var item in passReg)
                     {
-                        if(Char.IsDigit(item))
-                            new WrongPasswordExpection("Ошибка ввода пароля");
+                        if (Char.IsDigit(item))
+                        {
+                            isCheckDigital = true;
+                            break;
+                        }
                     }
+                    if (!isCheckDigital) throw new WrongPasswordExpection("Ошибка ввода пароля");
                 }
 
                 password = passReg;
@@ -55,21 +62,32 @@ namespace lesson_12_1
             catch (WrongPasswordExpection ex)
             {
                 Console.WriteLine(ex.Message);
+                throw;
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
             }
 
             try
             {
-                Console.Write("Введите ваш пароль: ");
+                Console.Write("Введите ваш пароль повторно: ");
                 string confPassReg = Console.ReadLine();
-                if (confPassReg.IndexOf(' ') >= 0 || confPassReg.Length >= 20)
-                    new WrongPasswordExpection("Ошибка ввода пароля");
+                if (confPassReg.IndexOf(' ') >= 0 || confPassReg.Length >= 20 || confPassReg != password)
+                    throw new WrongPasswordExpection("Ошибка ввода пароля");
                 else
                 {
+                    bool isCheckDigital = false;
                     foreach (var item in confPassReg)
                     {
                         if (Char.IsDigit(item))
-                            new WrongPasswordExpection("Ошибка ввода пароля");
+                        {
+                            isCheckDigital = true;
+                            break;
+                        }
                     }
+                    if (!isCheckDigital) throw new WrongPasswordExpection("Ошибка ввода пароля");
                 }
 
                 confirmPassword = confPassReg;
@@ -77,7 +95,16 @@ namespace lesson_12_1
             catch (WrongPasswordExpection ex)
             {
                 Console.WriteLine(ex.Message);
+                throw;
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+
+            Console.WriteLine("Пользователь успешно зарегистрирован)");
+            return true;
         }
 
     }
