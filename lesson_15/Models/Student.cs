@@ -2,19 +2,18 @@
 {
     public class Student
     {
-        private string Name { get; set; }
+        public int Id { get; set; }
 
-        private string Group { get; set; }
+        public string Name { get; set; }
 
-        private string Speciality { get; set; }
+        public bool IsStudying { get; set; }
 
+        public uint Age { get; set; }
 
-
-        public Student(string name, string group, string speciality)
+        public Student()
         {
-            Name = name;
-            Group = group;
-            Speciality = speciality;
+
         }
+
     }
 }
