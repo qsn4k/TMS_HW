@@ -1,3 +1,6 @@
+using lesson_17.Repositories;
+using lesson_17.Repositoryies;
+
 namespace lesson_17
 {
     public class Program
@@ -8,6 +11,8 @@ namespace lesson_17
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+
 
             var app = builder.Build();
 

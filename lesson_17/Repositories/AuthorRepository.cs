@@ -1,12 +1,33 @@
 ﻿using lesson_17.Models;
+using lesson_17.Repositories;
 
 namespace lesson_17.Repositoryies
 {
-    public static class AuthorRepository
+    public class AuthorRepository : IAuthorRepository
     {
         private static List<Author> authors = new List<Author>
         {
               
         };
+
+        public void Add(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Get(Author author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Author author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

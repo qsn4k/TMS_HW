@@ -2,7 +2,7 @@
 
 namespace lesson_17.Repositories
 {
-    public static class BookRepository
+    public class BookRepository
     {
         private static List<Book> books = new List<Book>
         {
