@@ -6,10 +6,14 @@
 
         public List<Author> Authors { get; private set; }
 
-        public Book(string title, List<Author> authors)
+        public string Reader { get; private set; }
+
+        public Book(string title, List<Author> authors, string reader)
         {
             Title = title;
             Authors = authors;
+            Reader = reader;
         }
+
     }
 }
