@@ -36,5 +36,10 @@ namespace lesson_17.Controllers
             _authorRepository.Add(author);
             return RedirectToAction("List");
         }
+
+        public IActionResult Delete(Author author)
+        {
+            return RedirectToAction("List");
+        }
     }
 }

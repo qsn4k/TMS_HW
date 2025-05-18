@@ -37,8 +37,6 @@ namespace lesson_17.Repositories
             return readers;
         }
 
-
-
         private async Task<bool> SaveAsync()
         {
             try

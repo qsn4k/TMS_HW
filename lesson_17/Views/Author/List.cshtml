@@ -7,16 +7,23 @@
 <h1>List</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Добавить нового автора</a>
 </p>
 <table class="table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Фамилия
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Age)
+                Имя
+            </th>
+            <th>
+                Год рождения
+            </th>
+            <th>
+                Страна происхождения
             </th>
             <th></th>
         </tr>
@@ -24,16 +31,15 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@item.Id</td>
+            <td>@item.SurName</td>
+            <td>@item.Name</td>
+            <td>@item.BirthYear</td>
+            <td>@item.Country</td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Информация", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
 }
