@@ -37,9 +37,31 @@ namespace lesson_17.Controllers
             return RedirectToAction("List");
         }
 
-        public IActionResult Delete(Author author)
+        public IActionResult Details(int id)
         {
+            var author = _authorRepository.Get(id);
+            return View(author);
+        }
+
+        public IActionResult Delete(int id)
+        {
+            _authorRepository.Delete(id);
             return RedirectToAction("List");
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var author = _authorRepository.Get(id);
+            return View(author);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Author author)
+        {
+            _authorRepository.Update(author);
+            return RedirectToAction("List"); // Изменить на details
+
         }
     }
 }

@@ -19,15 +19,20 @@ namespace lesson_17.Repositoryies
             Save();
         }
 
-        public void Delete(Author author)
+        public void Delete(int Id)
         {
-
-            Save();
+            var author = authors.FirstOrDefault(item => item.Id == Id);
+            if(author != null)
+            {
+                authors.Remove(author);
+                Save();
+            }
         }
 
-        public void Get(Author author)
+        public Author Get(int Id)
         {
-            throw new NotImplementedException();
+            var author = authors.FirstOrDefault(item => item.Id == Id);
+            return author;
         }
 
         public List<Author> GetAll()
@@ -37,7 +42,9 @@ namespace lesson_17.Repositoryies
 
         public void Update(Author author)
         {
-            throw new NotImplementedException();
+            var index = authors.FindIndex(item => item.Id == author.Id);
+            authors[index] = author;
+            Save();
         }
 
         private async Task<bool> Save()
@@ -45,6 +52,11 @@ namespace lesson_17.Repositoryies
             try
             {
                 string path = "D:\\Project\\TMS_HW\\lesson_17\\Json\\Authors.json";
+
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
 
                 var optionsJson = new JsonSerializerOptions
                 {

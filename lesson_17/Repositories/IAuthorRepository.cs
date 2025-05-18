@@ -8,9 +8,9 @@ namespace lesson_17.Repositories
 
         void Update(Author author);
 
-        void Delete(Author author);
+        void Delete(int Id);
 
-        void Get(Author author);
+        Author Get(int Id);
 
         List<Author> GetAll();
     }
