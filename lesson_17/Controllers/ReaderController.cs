@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace lesson_17.Controllers
 {
-    public class AuthorController : Controller
+    public class ReaderController : Controller
     {
-        private readonly IAuthorRepository _authorRepository;
+        private readonly IReaderRepository _readerRepository;
 
-        public AuthorController(IAuthorRepository authorRepository)
+        public ReaderController(IReaderRepository readerRepository)
         {
-            _authorRepository = authorRepository;
+            _readerRepository = readerRepository;
         }
 
         public IActionResult Index()
@@ -20,8 +20,8 @@ namespace lesson_17.Controllers
 
         public IActionResult List()
         {
-            List<Author> authors = _authorRepository.GetAll();
-            return View(authors);
+            List<Reader> readers = _readerRepository.GetAll();
+            return View(readers);
         }
 
         [HttpGet]
@@ -31,9 +31,9 @@ namespace lesson_17.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Author author)
+        public IActionResult Create(Reader reader)
         {
-            _authorRepository.Add(author);
+            _readerRepository.Add(reader);
             return RedirectToAction("List");
         }
     }

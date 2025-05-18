@@ -2,7 +2,7 @@
 {
     public class Reader
     {
-        private string Name { get; set; }
+        public string Name { get; set; }
 
         private List<Book> Books = new List<Book>
         {

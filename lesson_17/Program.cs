@@ -1,5 +1,6 @@
 using lesson_17.Repositories;
 using lesson_17.Repositoryies;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace lesson_17
 {
@@ -12,7 +13,8 @@ namespace lesson_17
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-
+            builder.Services.AddScoped<IBookRepository, BookRepository>();
+            builder.Services.AddScoped<IReaderRepository, ReaderRepository>();
 
             var app = builder.Build();
 

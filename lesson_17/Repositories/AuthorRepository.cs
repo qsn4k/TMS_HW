@@ -12,7 +12,7 @@ namespace lesson_17.Repositoryies
 
         public void Add(Author author)
         {
-            throw new NotImplementedException();
+            authors.Add(author);
         }
 
         public void Delete(Author author)
@@ -25,9 +25,14 @@ namespace lesson_17.Repositoryies
             throw new NotImplementedException();
         }
 
+        public List<Author> GetAll()
+        {
+            return authors;
+        }
+
         public void Update(Author author)
         {
             throw new NotImplementedException();
         }
-    }
+    }   
 }

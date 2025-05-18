@@ -1,5 +1,4 @@
-﻿
-using lesson_17.Models;
+﻿using lesson_17.Models;
 
 namespace lesson_17.Repositories
 {
@@ -12,5 +11,7 @@ namespace lesson_17.Repositories
         void Delete(Author author);
 
         void Get(Author author);
+
+        List<Author> GetAll();
     }
 }
