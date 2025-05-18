@@ -13,11 +13,6 @@ namespace lesson_17.Controllers
             _authorRepository = authorRepository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult List()
         {
             List<Author> authors = _authorRepository.GetAll();

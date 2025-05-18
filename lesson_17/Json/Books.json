@@ -1,0 +1,19 @@
+[
+  {
+    "Id": 0,
+    "Title": "Капитанская дочка",
+    "Year": 1836,
+    "Genre": "Роман",
+    "Authors": [
+      {
+        "Id": 0,
+        "SurName": "Пушкин",
+        "Name": "Александр",
+        "BirthYear": 1799,
+        "Country": "Россия"
+      }
+    ],
+    "IsBorrowed": false,
+    "Reader": null
+  }
+]

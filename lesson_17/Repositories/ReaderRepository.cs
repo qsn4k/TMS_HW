@@ -22,14 +22,14 @@ namespace lesson_17.Repositories
 
         }
 
-        public void Delete(Reader reader)
+        public void Delete(int id)
         {
 
         }
 
-        public void Get(Reader reader)
+        public Reader Get(int id)
         {
-
+            return new Reader();
         }
 
         public List<Reader> GetAll()

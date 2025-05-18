@@ -15,13 +15,15 @@ namespace lesson_17.Repositoryies
 
         public void Add(Author author)
         {
+            Update();
             authors.Add(author);
             Save();
         }
 
         public void Delete(int Id)
         {
-            var author = authors.FirstOrDefault(item => item.Id == Id);
+            Update();
+            var author = authors.First(item => item.Id == Id);
             if(author != null)
             {
                 authors.Remove(author);
@@ -31,13 +33,9 @@ namespace lesson_17.Repositoryies
 
         public Author Get(int Id)
         {
-            var author = authors.FirstOrDefault(item => item.Id == Id);
-            return author;
-        }
-
-        public List<Author> GetAll()
-        {
-            return authors;
+            var author = authors.First(item => item.Id == Id);
+            if (author != null) return author;
+            else return new Author();
         }
 
         public void Update(Author author)
@@ -45,6 +43,12 @@ namespace lesson_17.Repositoryies
             var index = authors.FindIndex(item => item.Id == author.Id);
             authors[index] = author;
             Save();
+        }
+
+        public List<Author> GetAll()
+        {
+            Update();
+            return authors;
         }
 
         private async Task<bool> Save()

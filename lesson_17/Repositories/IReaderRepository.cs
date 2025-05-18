@@ -8,9 +8,9 @@ namespace lesson_17.Repositories
 
         void Update(Reader reader);
 
-        void Delete(Reader reader);
+        void Delete(int Id);
 
-        void Get(Reader reader);
+        Reader Get(int Id);
 
         List<Reader> GetAll();
 

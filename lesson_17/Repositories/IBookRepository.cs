@@ -6,11 +6,11 @@ namespace lesson_17.Repositories
     {
         void Add(Book book);
 
-        void Delete(Book book);
-
         void Update(Book book);
 
-        void Get(Book book);
+        void Delete(int Id);
+
+        Book Get(int Id);
 
         List<Book> GetAll();
     }

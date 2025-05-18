@@ -4,6 +4,8 @@
     {
         public int Id { get; set; }
 
+        public string SurName { get; set; }
+
         public string Name { get; set; }
 
         private List<Book> Books = new List<Book>
@@ -11,10 +13,8 @@
 
         };
 
-        public Reader(string name, List<Book> books)
+        public Reader()
         {
-            Name = name;
-            Books = books;
         }
     }
 }
