@@ -46,6 +46,7 @@ namespace lesson_17.Repositories
 
         public List<Book> GetAll()
         {
+            Update();
             return books;
         }
 
