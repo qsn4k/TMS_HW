@@ -57,12 +57,20 @@ namespace lesson_17.Controllers
         public IActionResult Edit(int id)
         {
             var book = _bookRepository.Get(id);
-            return View(book);
+            BookAuthorView bookAuthorView = new BookAuthorView();
+            bookAuthorView.Authors = new AuthorRepository().GetAll();
+            bookAuthorView.Book = book;
+            return View(bookAuthorView);
         }
 
         [HttpPost]
-        public IActionResult Edit(Book book)
+        public IActionResult Edit(BookAuthorView bookAuthorView)
         {
+            Book book = bookAuthorView.Book;
+            List<Author> authors = new AuthorRepository().GetAll()
+                .Where(author => bookAuthorView.SelectAuthors.Contains(author.Id))
+                .ToList();
+            book.Authors = authors;
             _bookRepository.Update(book);
             return RedirectToAction("List"); // Изменить на details
 
