@@ -10,7 +10,7 @@ namespace lesson_17.Repositories
 
         void Delete(int Id);
 
-        void UpdateIsBorrowed(int Id, bool IsBorrowed);
+        void UpdateIsBorrowed(int Id, bool IsBorrowed, Reader? reader);
 
         Book Get(int Id);
 

@@ -13,7 +13,11 @@
         "Country": "Россия"
       }
     ],
-    "IsBorrowed": false,
-    "Reader": null
+    "IsBorrowed": true,
+    "Reader": {
+      "Id": 0,
+      "SurName": "Денисенко",
+      "Name": "Даниил"
+    }
   }
 ]

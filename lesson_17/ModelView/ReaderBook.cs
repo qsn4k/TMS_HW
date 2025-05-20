@@ -9,7 +9,7 @@ namespace lesson_17.ModelView
 
         public List<Book> Books { get; set; }
 
-        public int SelectBook { get; set; }
+        public List<int> SelectBook { get; set; }
 
         public ReaderBook() { }
     }

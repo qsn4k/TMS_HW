@@ -82,17 +82,35 @@ namespace lesson_17.Controllers
         {
             Reader reader = new Reader() { };
             reader = readerBook.Reader;
-            reader.Books.Add(_bookRepository.Get(readerBook.SelectBook));
+            reader.Books.Add(_bookRepository.Get(readerBook.SelectBook[0]));
             _readerRepository.Update(reader);
-            _bookRepository.UpdateIsBorrowed(readerBook.SelectBook, true);
-            return RedirectToAction("Details", readerBook.Reader.Id);
+            _bookRepository.UpdateIsBorrowed(readerBook.SelectBook[0], true, reader);
+            return RedirectToAction("List");
         }
 
 
         [HttpGet]        
-        public IActionResult GiveBook(Reader reader)
+        public IActionResult GiveBook(int Id)
         {
-            return RedirectToAction("Details", reader.Id);
+            var reader = _readerRepository.Get(Id);
+            ReaderBook readerBook = new ReaderBook();
+            readerBook.Reader = reader;
+            readerBook.Books = _bookRepository.GetAll().Where(book => book.Reader.Id == reader.Id).ToList();
+            return View(readerBook);
+        }
+
+        [HttpPost]
+        public IActionResult GiveBook(ReaderBook readerBook)
+        {
+            Reader reader = new Reader() { };
+            reader = readerBook.Reader;
+            reader.Books.Add(_bookRepository.Get(readerBook.SelectBook[0]));
+            _readerRepository.Update(reader);
+            foreach (var book in readerBook.SelectBook)
+            {
+                _bookRepository.UpdateIsBorrowed(book, false, reader);
+            }
+            return RedirectToAction("List");
         }
 
     }

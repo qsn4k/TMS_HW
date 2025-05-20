@@ -50,10 +50,11 @@ namespace lesson_17.Repositories
             return books;
         }
 
-        public void UpdateIsBorrowed(int Id, bool IsBorrowed)
+        public void UpdateIsBorrowed(int Id, bool IsBorrowed, Reader? reader)
         {
             int index = books.FindIndex(book => book.Id == Id);
             books[index].IsBorrowed = IsBorrowed;
+            books[index].Reader = reader;
             Save();
         }
 

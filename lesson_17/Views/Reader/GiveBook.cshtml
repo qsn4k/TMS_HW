@@ -1,0 +1,52 @@
+﻿@model lesson_17.ModelView.ReaderBook
+
+@{
+    ViewData["Title"] = "TakeBook";
+}
+
+<h1>TakeBook</h1>
+
+<h4>Reader</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TakeBook">
+            <div class="form-group">
+                <label asp-for="Reader.Id" class="control-label"></label>
+                <input asp-for="Reader.Id" class="form-control" readonly />
+                <span asp-validation-for="Reader.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reader.SurName" class="control-label"></label>
+                <input asp-for="Reader.SurName" class="form-control" readonly />
+                <span asp-validation-for="Reader.SurName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reader.Name" class="control-label"></label>
+                <input asp-for="Reader.Name" class="form-control" readonly />
+                <span asp-validation-for="Reader.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SelectBook" class="control-label"></label>
+                <select asp-for="SelectBook" class="form-control">
+                    @foreach (var book in Model.Books)
+                    {
+                        <option value="@book.Id">@book.Title @book.Year</option>
+                    }
+                </select>
+                <span asp-validation-for="SelectBook" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Взять книгу" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
