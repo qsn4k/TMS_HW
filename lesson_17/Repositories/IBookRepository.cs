@@ -10,6 +10,8 @@ namespace lesson_17.Repositories
 
         void Delete(int Id);
 
+        void UpdateIsBorrowed(int Id, bool IsBorrowed);
+
         Book Get(int Id);
 
         List<Book> GetAll();

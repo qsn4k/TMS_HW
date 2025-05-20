@@ -8,7 +8,7 @@ namespace lesson_17.ModelView
 
         public string Title { get; set; }
 
-        public List<Author> Authors { get; set; }
+        public List<Author> Authors { get; set; } = new List<Author> { };
 
         public bool IsBorrowed { get; set; }
 

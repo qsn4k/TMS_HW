@@ -1,6 +1,4 @@
-﻿
-
-using lesson_17.ModelView;
+﻿using lesson_17.ModelView;
 
 namespace lesson_17.Models
 {
@@ -14,7 +12,7 @@ namespace lesson_17.Models
 
         public string Genre { get; set; }
 
-        public List<Author> Authors { get; set; }
+        public List<Author> Authors { get; set; } = new List<Author> { };
 
         public bool IsBorrowed { get; set; }
 

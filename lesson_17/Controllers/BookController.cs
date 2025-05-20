@@ -73,7 +73,6 @@ namespace lesson_17.Controllers
             book.Authors = authors;
             _bookRepository.Update(book);
             return RedirectToAction("List"); // Изменить на details
-
         }
     }
 }

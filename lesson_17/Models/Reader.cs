@@ -8,10 +8,7 @@
 
         public string Name { get; set; }
 
-        private List<Book> Books = new List<Book>
-        {
-
-        };
+        public List<Book> Books = new List<Book>{};
 
         public Reader()
         {

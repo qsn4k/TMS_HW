@@ -50,6 +50,13 @@ namespace lesson_17.Repositories
             return books;
         }
 
+        public void UpdateIsBorrowed(int Id, bool IsBorrowed)
+        {
+            int index = books.FindIndex(book => book.Id == Id);
+            books[index].IsBorrowed = IsBorrowed;
+            Save();
+        }
+
         private async Task<bool> Save()
         {
             try
@@ -109,6 +116,8 @@ namespace lesson_17.Repositories
 
         }
 
-        public BookRepository() { }
+        public BookRepository() {
+            Update();
+        }
     }
 }
