@@ -12,6 +12,7 @@ namespace lesson_23.Models
 
         public string Name { get; set; }
 
-        public int? IdReaderCard { get; set; }
+        public int? BookId { get; set; }
+        public Book? Book { get; set; }
     }
 }

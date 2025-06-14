@@ -11,12 +11,40 @@ namespace lesson_23
         {
             using (var contex = new AppContext())
             {
-                var Readers = contex.Readers.ToList();
-                foreach (var reader in Readers)
+                var author = new Author
                 {
-                    Console.WriteLine(reader);
-                }
+                    Name = "Пушкин"
+                };
+                contex.Authors.Add(author);
+
+                var book = new Book
+                {
+                    Title = "Золотая рыбка",
+                    AuthorId = 1
+                };
+                contex.Books.Add(book);
+
+                var reader = new Reader
+                {
+                    Name = "Даниил",
+                    BookId = 1
+                };
+                contex.Readers.Add(reader);
+
+                contex.SaveChanges();
+
             }
+
+            using (var contex = new AppContext())
+            {
+                var reader = contex.Readers.FirstOrDefault();
+                var book = contex.Books.FirstOrDefault();
+                var author = contex.Authors.FirstOrDefault();
+                Console.WriteLine($"Имя читателя: {reader.Name}, читает: {book.Title}, {author.Name}");
+            }
+
         }
+
     }
+
 }

@@ -12,6 +12,8 @@ namespace lesson_23.Models
 
         public string Title { get; set; }
 
-        public int? ReaderCardsId { get; set; }
+        public int? AuthorId { get; set; }
+
+        public Author? Author { get; set; }
     }
 }

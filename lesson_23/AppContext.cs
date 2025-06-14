@@ -18,7 +18,7 @@ namespace lesson_23
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = "Data Source=localhost;Initial Catalog=Библиотека;Integrated Security=True;Trust Server Certificate=True";
+            string connectionString = "Data Source=localhost;Initial Catalog=StudentsNew;Integrated Security=True;Trust Server Certificate=True";
             optionsBuilder.UseSqlServer(connectionString);
         }
     }
