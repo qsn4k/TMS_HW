@@ -1,4 +1,4 @@
-﻿using lesson_17.Models;
+﻿using lesson_25.Data.Models;
 
 namespace lesson_17.ModelView
 {

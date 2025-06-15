@@ -1,7 +1,7 @@
-﻿using lesson_17.Models;
-using lesson_17.ModelView;
+﻿using lesson_17.ModelView;
 using lesson_17.Repositories;
 using lesson_17.Repositoryies;
+using lesson_25.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lesson_17.Controllers

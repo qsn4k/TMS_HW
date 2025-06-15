@@ -1,9 +1,11 @@
 ﻿using lesson_17.ModelView;
+using System.ComponentModel.DataAnnotations;
 
-namespace lesson_17.Models
+namespace lesson_25.Data.Models
 {
     public class Book
     {
+        [Key]
         public int Id { get; set; }
 
         public string Title { get; set; }
@@ -16,8 +18,9 @@ namespace lesson_17.Models
 
         public bool IsBorrowed { get; set; }
 
-        public Reader? Reader { get; set; }
+        public int? ReaderId { get; set; }
 
+        public Reader? Reader { get; set; }
 
 
         public Book() { }
