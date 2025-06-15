@@ -6,15 +6,20 @@ namespace lesson_25.Data
     public class ApplicationContex : DbContext
     {
 
-        DbSet<Author> Authors;
+        public DbSet<Author> Authors;
 
-        DbSet<Reader> Readers;
+        public DbSet<Reader> Readers;
 
-        DbSet<Book> Books;
+        public DbSet<Book> Books;
 
 
         public ApplicationContex(DbContextOptions<ApplicationContex> options) : base (options)
         { }
+
+        public ApplicationContex()
+        {
+
+        }
 
     }
 }

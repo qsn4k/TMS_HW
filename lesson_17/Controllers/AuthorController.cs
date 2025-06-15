@@ -1,4 +1,5 @@
 ﻿using lesson_17.Repositories;
+using lesson_25.Data;
 using lesson_25.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace lesson_17.Controllers
     public class AuthorController : Controller
     {
         private readonly IAuthorRepository _authorRepository;
+
 
         public AuthorController(IAuthorRepository authorRepository)
         {
