@@ -18,10 +18,7 @@ namespace lesson_25.Data.Models
 
         public bool IsBorrowed { get; set; }
 
-        public int? ReaderId { get; set; }
-
         public Reader? Reader { get; set; }
-
 
         public Book() { }
 

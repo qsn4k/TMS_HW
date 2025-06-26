@@ -5,7 +5,7 @@
 namespace lesson_25.Migrations
 {
     /// <inheritdoc />
-    public partial class _2 : Migration
+    public partial class dw : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

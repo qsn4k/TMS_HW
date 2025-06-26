@@ -15,7 +15,6 @@ namespace lesson_25.Data.Models
 
         public string Country { get; set; }
 
-        public Author(){}
-
+        public List<Book> Books { get; set; } = new List<Book> { };
     }
 }

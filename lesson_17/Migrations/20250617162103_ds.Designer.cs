@@ -11,8 +11,8 @@ using lesson_25.Data;
 namespace lesson_25.Migrations
 {
     [DbContext(typeof(ApplicationContex))]
-    [Migration("20250615125534_4")]
-    partial class _4
+    [Migration("20250617162103_ds")]
+    partial class ds
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

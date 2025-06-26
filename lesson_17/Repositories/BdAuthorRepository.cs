@@ -7,10 +7,16 @@ namespace lesson_25.Repositories
 {
     public class BdAuthorRepository : IAuthorRepository
     {
+        private readonly ApplicationContex contex;
+
+        public BdAuthorRepository(ApplicationContex _contex)
+        {
+            contex = _contex;
+        }
 
         public void Add(Author author)
         {
-            using(var contex = new ApplicationContex())
+            using (contex)
             {
                 contex.Authors.Add(author);
                 contex.SaveChanges();
@@ -19,7 +25,7 @@ namespace lesson_25.Repositories
 
         public void Delete(int Id)
         {
-            using(var contex = new ApplicationContex())
+            using (contex)
             {
                 contex.Authors.Where(x => x.Id == Id).ExecuteDelete();
             }
@@ -27,7 +33,7 @@ namespace lesson_25.Repositories
 
         public Author Get(int Id)
         {
-            using(var contex = new ApplicationContex())
+            using (contex)
             {
                 var author = contex.Authors.First(x => x.Id == Id);
                 if (author != null) return author;
@@ -37,7 +43,7 @@ namespace lesson_25.Repositories
 
         public List<Author> GetAll()
         {
-            using(var contex = new ApplicationContex())
+            using (contex)
             {
                 return contex.Authors.ToList();
             }
@@ -46,10 +52,10 @@ namespace lesson_25.Repositories
         public void Update(Author author)
         {
             var id = author.Id;
-            using(var contex = new ApplicationContex())
+            using (contex)
             {
                 var newAuthor = contex.Authors.First(x => x.Id == id);
-                if(newAuthor != null)
+                if (newAuthor != null)
                 {
                     newAuthor = author;
                     contex.SaveChanges();

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using lesson_25.Data;
 
@@ -10,9 +11,11 @@ using lesson_25.Data;
 namespace lesson_25.Migrations
 {
     [DbContext(typeof(ApplicationContex))]
-    partial class ApplicationContexModelSnapshot : ModelSnapshot
+    [Migration("20250617162243_dq")]
+    partial class dq
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,21 +23,6 @@ namespace lesson_25.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("AuthorBook", b =>
-                {
-                    b.Property<int>("AuthorsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("BooksId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AuthorsId", "BooksId");
-
-                    b.HasIndex("BooksId");
-
-                    b.ToTable("AuthorBook");
-                });
 
             modelBuilder.Entity("lesson_25.Data.Models.Author", b =>
                 {
@@ -45,6 +33,9 @@ namespace lesson_25.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BirthYear")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BookId")
                         .HasColumnType("int");
 
                     b.Property<string>("Country")
@@ -60,6 +51,8 @@ namespace lesson_25.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("Authors");
                 });
@@ -117,33 +110,25 @@ namespace lesson_25.Migrations
                     b.ToTable("Readers");
                 });
 
-            modelBuilder.Entity("AuthorBook", b =>
+            modelBuilder.Entity("lesson_25.Data.Models.Author", b =>
                 {
-                    b.HasOne("lesson_25.Data.Models.Author", null)
-                        .WithMany()
-                        .HasForeignKey("AuthorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("lesson_25.Data.Models.Book", null)
-                        .WithMany()
-                        .HasForeignKey("BooksId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Authors")
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("lesson_25.Data.Models.Book", b =>
                 {
                     b.HasOne("lesson_25.Data.Models.Reader", "Reader")
-                        .WithMany("Books")
+                        .WithMany()
                         .HasForeignKey("ReaderId");
 
                     b.Navigation("Reader");
                 });
 
-            modelBuilder.Entity("lesson_25.Data.Models.Reader", b =>
+            modelBuilder.Entity("lesson_25.Data.Models.Book", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("Authors");
                 });
 #pragma warning restore 612, 618
         }

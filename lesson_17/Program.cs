@@ -1,6 +1,6 @@
 using lesson_17.Repositories;
-using lesson_17.Repositoryies;
 using lesson_25.Data;
+using lesson_25.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +14,7 @@ namespace lesson_17
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+            builder.Services.AddScoped<IAuthorRepository, BdAuthorRepository>();
             builder.Services.AddScoped<IBookRepository, BookRepository>();
             builder.Services.AddScoped<IReaderRepository, ReaderRepository>();
 

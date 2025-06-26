@@ -11,7 +11,7 @@ namespace lesson_25.Data.Models
 
         public string Name { get; set; }
 
-        public List<Book> Books = new List<Book>{};
+        public List<Book> Books { get; set; } = new List<Book> { };
 
         public Reader()
         {

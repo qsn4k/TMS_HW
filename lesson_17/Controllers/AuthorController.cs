@@ -9,7 +9,6 @@ namespace lesson_17.Controllers
     {
         private readonly IAuthorRepository _authorRepository;
 
-
         public AuthorController(IAuthorRepository authorRepository)
         {
             _authorRepository = authorRepository;
