@@ -14,7 +14,9 @@
 
         public struct Basket
         {
+            public List<Ticket> UsedTickets { get; set; }
 
+            public List<Ticket> Tickets { get; set; }
         }
     }
 }
