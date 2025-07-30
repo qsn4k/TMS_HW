@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace lesson_32
 {
-    class ArrayString : IEnumerable<int>
+    class ArrayString : IEnumerable<string>
     {
         private string[] items;
         private int count;
