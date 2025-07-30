@@ -1,4 +1,5 @@
 ﻿using lesson_28.Controllers;
+using lesson_28.Service;
 
 namespace lesson_28
 {
@@ -11,6 +12,7 @@ namespace lesson_28
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IGet, GetService>();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
