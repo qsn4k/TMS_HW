@@ -1,22 +1,32 @@
-﻿namespace dp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace dp.Models
 {
     public class User
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string FullName { get; set; }
 
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
+        [Required]
         public string PasswordHash { get; set; }
 
-        public string Role { get; set; }
+        [Required]
+        public UserRole Role { get; set; }
 
-        public struct Basket
-        {
-            public List<Ticket> UsedTickets { get; set; }
-
-            public List<Ticket> Tickets { get; set; }
-        }
+        public ICollection<Ticket> Tickets { get; set; }
     }
+
+    public enum UserRole
+    {
+        User,
+        Admin
+    }
+
 }

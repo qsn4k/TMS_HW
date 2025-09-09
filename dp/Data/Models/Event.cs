@@ -1,17 +1,33 @@
-﻿namespace dp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace dp.Models
 {
     public class Event
     {
         public int Id { get; set; }
 
+        [Required]
+        [StringLength(100)]
         public string Title { get; set; }
 
-        public DateTime Date { get; set; }
+        [Required]
+        [StringLength(500)]
+        public string Description { get; set; }
 
+        [Required]
+        public DateTime DateTime { get; set; }
+
+        [Required]
+        [StringLength(200)]
         public string Location { get; set; }
 
-        public int TicketCount { get; set; }
+        [Range(1, int.MaxValue)]
+        public int TotalTickets { get; set; }
 
-        public List<Ticket> Tickets { get; set; }
+        [Range(0, double.MaxValue)]
+        public decimal Price { get; set; }
+
+        public ICollection<Ticket> Tickets { get; set; }
     }
+
 }
