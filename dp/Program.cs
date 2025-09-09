@@ -1,4 +1,5 @@
 using dp.Data;
+using dp.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace dp
@@ -12,10 +13,18 @@ namespace dp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<IEventService, EventService>();
+            builder.Services.AddScoped<ITicketService, TicketService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
+            builder.Services.AddSession();
+
             builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
+
+            app.UseSession();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -33,7 +42,7 @@ namespace dp
             app.MapStaticAssets();
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=Event}/{action=Index}/{id?}")
                 .WithStaticAssets();
 
             app.Run();

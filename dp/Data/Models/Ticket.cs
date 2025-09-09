@@ -10,7 +10,7 @@ namespace dp.Models
         public int EventId { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
 
         public DateTime PurchaseDate { get; set; }
 

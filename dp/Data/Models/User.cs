@@ -17,7 +17,6 @@ namespace dp.Models
         [Required]
         public string PasswordHash { get; set; }
 
-        [Required]
         public UserRole Role { get; set; }
 
         public ICollection<Ticket> Tickets { get; set; }

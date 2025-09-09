@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Доступ запрещён";
+    Layout = "_Layout";
+}
+
+<div class="alert alert-warning mt-4">
+    <h4>🚫 У вас нет прав для доступа к этой странице</h4>
+    <p>Только администраторы могут выполнять это действие.</p>
+</div>
+
+<a asp-controller="Event" asp-action="Index" class="btn btn-primary">Вернуться к мероприятиям</a>

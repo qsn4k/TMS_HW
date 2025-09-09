@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Ошибка входа";
+}
+
+<div class="alert alert-danger mt-4">
+    <h4>❌ Неверный email или пароль</h4>
+    <p>Пожалуйста, проверьте введенные данные и попробуйте снова.</p>
+</div>
+
+<a asp-action="Login" class="btn btn-primary">Попробовать снова</a>
+<a asp-action="Register" class="btn btn-secondary ms-2">Регистрация</a>

@@ -1,0 +1,47 @@
+﻿@model Ticket
+@{
+    ViewData["Title"] = "Билет куплен";
+    Layout = "_Layout";
+}
+
+<div class="alert alert-success mt-4">
+    <h2>🎉 Покупка завершена!</h2>
+    <p>Вы успешно приобрели билет на мероприятие <strong>@Model.Event.Title</strong>.</p>
+</div>
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>Дата</th>
+        <td>@Model.Event.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+    </tr>
+    <tr>
+        <th>Место</th>
+        <td>@Model.Event.Location</td>
+    </tr>
+    <tr>
+        <th>Цена</th>
+        <td>@Model.Event.Price.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Статус оплаты</th>
+        <td>@(Model.IsPaid ? "✅ Оплачен" : "⏳ Ожидает оплаты")</td>
+    </tr>
+</table>
+
+@if (!Model.IsPaid)
+{
+    <form asp-action="ConfirmPayment" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="ticketId" value="@Model.Id" />
+        <button type="submit" class="btn btn-success">Оплатить сейчас</button>
+    </form>
+}
+else
+{
+    <div class="alert alert-info mt-3">Ваш билет уже оплачен. Спасибо!</div>
+}
+
+<div class="mt-4">
+    <a asp-action="MyTickets" class="btn btn-outline-primary">📄 Мои билеты</a>
+    <a asp-controller="Event" asp-action="Index" class="btn btn-outline-secondary ms-2">🎫 Все мероприятия</a>
+</div>

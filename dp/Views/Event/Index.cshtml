@@ -1,0 +1,39 @@
+﻿@model List<Event>
+
+<h2>Список мероприятий</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Дата</th>
+            <th>Место</th>
+            <th>Цена</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ev in Model)
+        {
+            <tr>
+                <td>@ev.Title</td>
+                <td>@ev.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@ev.Location</td>
+                <td>@ev.Price.ToString("C")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ev.Id">Подробнее</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var role = ViewContext.HttpContext.Session.GetString("Role");
+}
+
+@if (role == "Admin")
+{
+    <a asp-action="Create" class="btn btn-primary">Добавить мероприятие</a>
+}
+

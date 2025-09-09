@@ -1,0 +1,23 @@
+﻿@model List<Ticket>
+
+<h2>Мои билеты</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Мероприятие</th>
+            <th>Дата</th>
+            <th>Статус оплаты</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ticket in Model)
+        {
+            <tr>
+                <td>@ticket.Event.Title</td>
+                <td>@ticket.Event.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@(ticket.IsPaid ? "Оплачено" : "Ожидает оплаты")</td>
+            </tr>
+        }
+    </tbody>
+</table>
