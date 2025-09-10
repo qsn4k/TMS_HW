@@ -1,7 +1,7 @@
-﻿@model Ticket
+﻿@using dp.ViewModels
+@model TicketEventViewModel
 @{
     ViewData["Title"] = "Билет куплен";
-    Layout = "_Layout";
 }
 
 <div class="alert alert-success mt-4">
@@ -24,15 +24,15 @@
     </tr>
     <tr>
         <th>Статус оплаты</th>
-        <td>@(Model.IsPaid ? "✅ Оплачен" : "⏳ Ожидает оплаты")</td>
+        <td>@(Model.Ticket.IsPaid ? "✅ Оплачен" : "⏳ Ожидает оплаты")</td>
     </tr>
 </table>
 
-@if (!Model.IsPaid)
+@if (!Model.Ticket.IsPaid)
 {
     <form asp-action="ConfirmPayment" method="post">
         @Html.AntiForgeryToken()
-        <input type="hidden" name="ticketId" value="@Model.Id" />
+        <input type="hidden" name="ticketId" value="@Model.Ticket.Id" />
         <button type="submit" class="btn btn-success">Оплатить сейчас</button>
     </form>
 }

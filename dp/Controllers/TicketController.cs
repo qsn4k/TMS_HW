@@ -47,8 +47,14 @@ public class TicketController : Controller
     public async Task<IActionResult> Confirm(int ticketId)
     {
         var ticket = await _ticketService.GetTicketByIdAsync(ticketId);
-        if (ticket == null) return NotFound();
-        return View(ticket);
+        if (ticket == null)
+            return NotFound();
+
+        var ev = await _eventService.GetEventByIdAsync(ticket.EventId);
+
+        TicketEventViewModel ticketEventViewModel = new TicketEventViewModel(ticket, ev);
+
+        return View(ticketEventViewModel);
     }
 
     [HttpPost]
