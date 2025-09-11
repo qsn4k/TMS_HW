@@ -14,13 +14,24 @@ namespace dp.Services
         }
 
         public async Task<List<Ticket>> GetTicketsByUserIdAsync(int userId)
-            => await _context.Tickets.Where(t => t.UserId == userId).ToListAsync();
+        {
+            var tickets = await _context.Tickets.Where(t => t.UserId == userId).ToListAsync();
+            foreach (var item in tickets)
+            {
+                var ev = await _context.Events.FirstAsync(t => t.Id == item.EventId);
+                item.Event = ev;
+            }
+            return tickets;
+        }
+            
+            
 
         public async Task<Ticket> GetTicketByIdAsync(int id)
             => await _context.Tickets.FindAsync(id);
 
         public async Task<Ticket> PurchaseTicketAsync(int eventId, int userId)
         {
+            Event ev = await _context.Events.FirstAsync(t => t.Id == eventId);
             var ticket = new Ticket
             {
                 EventId = eventId,

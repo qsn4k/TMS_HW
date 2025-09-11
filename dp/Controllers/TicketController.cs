@@ -38,7 +38,6 @@ public class TicketController : Controller
         var userId = HttpContext.Session.GetInt32("UserId");
         if (userId == null) return RedirectToAction("Login", "User");
 
-        // Пока Quantity = 1, можно расширить позже
         var ticket = await _ticketService.PurchaseTicketAsync(model.EventId, userId.Value);
         return RedirectToAction("Confirm", new { ticketId = ticket.Id });
     }
