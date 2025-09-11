@@ -2,8 +2,9 @@
 
 namespace dp.ViewModels
 {
-    public class EventViewModel
+    public class EventCreateViewModel
     {
+
         [Required(ErrorMessage = "Введите название")]
         [StringLength(100)]
         public string Title { get; set; }
@@ -19,12 +20,13 @@ namespace dp.ViewModels
         public string Location { get; set; }
 
         [Required(ErrorMessage = "Укажите количество билетов")]
-        [Range(1, 10000)]
+        [Range(0, 10000)]
         public int TotalTickets { get; set; }
 
         [Required(ErrorMessage = "Укажите цену")]
         [Range(0, 10000)]
         public decimal Price { get; set; }
+
     }
 
 }

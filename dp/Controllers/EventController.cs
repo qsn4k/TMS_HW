@@ -37,10 +37,11 @@ public class EventController : Controller
         return View();
     }
 
+
     [HttpPost]
     [ValidateAntiForgeryToken]
     [AdminOnly]
-    public async Task<IActionResult> Create(EventViewModel model)
+    public async Task<IActionResult> Create(EventCreateViewModel model)
     {
         if (HttpContext.Session.GetString("Role") != "Admin")
             return Unauthorized();
@@ -54,6 +55,7 @@ public class EventController : Controller
             DateTime = model.DateTime,
             Location = model.Location,
             TotalTickets = model.TotalTickets,
+            RemainingTickets = model.TotalTickets,
             Price = model.Price
         };
 
@@ -71,30 +73,32 @@ public class EventController : Controller
         var ev = await _eventService.GetEventByIdAsync(id);
         if (ev == null) return NotFound();
 
-        var model = new EventViewModel
+
+        var model = new EventEditViewModel
         {
             Title = ev.Title,
             Description = ev.Description,
             DateTime = ev.DateTime,
             Location = ev.Location,
             TotalTickets = ev.TotalTickets,
-            Price = ev.Price
+            RemainingTickets = ev.RemainingTickets,
+            Price = ev.Price,
+            Id = ev.Id
         };
-
         return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     [AdminOnly]
-    public async Task<IActionResult> Edit(int id, EventViewModel model)
+    public async Task<IActionResult> Edit(EventEditViewModel model)
     {
         if (HttpContext.Session.GetString("Role") != "Admin")
             return Unauthorized();
 
         if (!ModelState.IsValid) return View(model);
 
-        var ev = await _eventService.GetEventByIdAsync(id);
+        var ev = await _eventService.GetEventByIdAsync(model.Id);
         if (ev == null) return NotFound();
 
         ev.Title = model.Title;

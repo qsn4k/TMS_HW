@@ -1,5 +1,9 @@
 ﻿@model List<Event>
 
+@{
+    var role = ViewContext.HttpContext.Session.GetString("Role");
+}
+
 <h2>Список мероприятий</h2>
 
 <table class="table">
@@ -9,6 +13,7 @@
             <th>Дата</th>
             <th>Место</th>
             <th>Цена</th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -23,14 +28,16 @@
                 <td>
                     <a asp-action="Details" asp-route-id="@ev.Id">Подробнее</a>
                 </td>
+                @if (role == "Admin")
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@ev.Id">Редактировать</a>
+                    </td>
+                }
             </tr>
         }
     </tbody>
 </table>
-
-@{
-    var role = ViewContext.HttpContext.Session.GetString("Role");
-}
 
 @if (role == "Admin")
 {

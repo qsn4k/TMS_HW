@@ -1,5 +1,5 @@
 ﻿@using dp.ViewModels
-@model EventViewModel
+@model EventCreateViewModel
 @{
     ViewData["Title"] = "Редактирование мероприятия";
     Layout = "_Layout";
@@ -47,5 +47,9 @@
     </div>
 
     <button type="submit" class="btn btn-success">Сохранить</button>
+    <button asp-action="Delete" asp-route-id="@Model.Id">Удалить</button>
+    @* как сделать так, чтобы не явно указывать на Id, а чтобы он брал его из того, что мы дали.
+        Так как, когда мы выполняет Post запрос на редактирования, он берёт нужны id, а при переходе на удаления нужно явно указывать
+    *@
 </form>
 

@@ -19,6 +19,8 @@ public class TicketController : Controller
         var ev = await _eventService.GetEventByIdAsync(eventId);
         if (ev == null) return NotFound();
 
+
+
         var model = new TicketPurchaseViewModel
         {
             EventId = eventId,

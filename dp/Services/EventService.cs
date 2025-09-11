@@ -31,7 +31,7 @@ namespace dp.Services
         }
 
         public async Task<List<Event>> GetAllEventsAsync() 
-            => await context.Events.ToListAsync();
+            => await context.Events.ToListAsync(); // тут долгая загрузка, сделать через Invoke
 
         public async Task<Event> GetEventByIdAsync(int id)
             => await context.Events.FindAsync(id);
