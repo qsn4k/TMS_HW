@@ -2,7 +2,7 @@
 
 namespace dp.ViewModels
 {
-    public class TicketPurchaseViewModel : IValidatableObject
+    public class TicketPurchaseViewModel /*: IValidatableObject*/
     {
         public int EventId { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace dp.ViewModels
 {
-    public class EventEditViewModel : IValidatableObject
+    public class EventEditViewModel : /*IValidatableObject*/
     {
         public int Id { get; set; }
 
