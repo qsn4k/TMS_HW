@@ -22,7 +22,12 @@ namespace dp.Services
 
 
         public async Task<TicketCart> GetTicketByIdAsync(int id)
-            => await _context.TicketCarts.FindAsync(id);
+        {
+            return await _context.TicketCarts.Include(c => c.Tickets)
+                        .ThenInclude(t => t.Event)
+                        .FirstOrDefaultAsync(c => c.Id == id);
+        }
+            
 
 
         public async Task<TicketCart> PurchaseCartAsync(List<Ticket> tickets, int userId)

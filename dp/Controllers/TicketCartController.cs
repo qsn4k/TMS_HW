@@ -68,7 +68,7 @@ namespace dp.Controllers
             if (ticketCart == null)
                 return NotFound();
 
-            var ticket = await _ticketService.GetTicketByIdAsync(ticketCart.Tickets.First().Id);
+            var ticket = await _ticketService.GetTicketByIdAsync(ticketCart.Tickets[0].Id);
             var ev = await _eventService.GetEventByIdAsync(ticket.EventId);
 
 
