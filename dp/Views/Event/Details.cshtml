@@ -7,4 +7,4 @@
 <p><strong>Место:</strong> @Model.Location</p>
 <p><strong>Цена:</strong> @Model.Price.ToString("C")</p>
 
-<a asp-controller="Ticket" asp-action="Buy" asp-route-eventId="@Model.Id" class="btn btn-primary">Купить билет</a>
+<a asp-controller="TicketCart" asp-action="Buy" asp-route-eventId="@Model.Id" class="btn btn-primary">Купить билет</a>

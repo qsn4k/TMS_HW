@@ -11,15 +11,15 @@ namespace dp.ViewModels
         [Required(ErrorMessage = "Введите количество билетов")]
         public int Quantity { get; set; }
 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (Quantity > RemainingTickets)
-            {
-                yield return new ValidationResult(
-                $"Общее количество билетов не может быть больше остатка ({RemainingTickets})",
-                new[] { nameof(Quantity) });
-            }
-        }
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (Quantity > RemainingTickets)
+        //    {
+        //        yield return new ValidationResult(
+        //        $"Общее количество билетов не может быть больше остатка ({RemainingTickets})",
+        //        new[] { nameof(Quantity) });
+        //    }
+        //}
     }
 
 }
