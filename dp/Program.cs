@@ -16,6 +16,7 @@ namespace dp
             builder.Services.AddScoped<IEventService, EventService>();
             builder.Services.AddScoped<ITicketService, TicketService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITicketCartService, TicketCartService>();
 
             builder.Services.AddSession();
 

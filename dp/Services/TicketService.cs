@@ -24,19 +24,19 @@ namespace dp.Services
             return tickets;
         }
             
-            
-
+        
         public async Task<Ticket> GetTicketByIdAsync(int id)
             => await _context.Tickets.FindAsync(id);
 
         public async Task<Ticket> PurchaseTicketAsync(int eventId, int userId)
         {
-            Event ev = await _context.Events.FirstAsync(t => t.Id == eventId);
+            var ev = await _context.Events.FirstAsync(t => t.Id == eventId);
             var ticket = new Ticket
             {
                 EventId = eventId,
                 UserId = userId,
                 PurchaseDate = DateTime.Now,
+                Price = ev.Price,
                 IsPaid = false
             };
             _context.Tickets.Add(ticket);
@@ -48,7 +48,10 @@ namespace dp.Services
         {
             var ticket = await _context.Tickets.FindAsync(ticketId);
             if (ticket == null) return false;
+            var ev = await _context.Events.FindAsync(ticket.EventId);
+            if (ev == null) return false;
 
+            ev.RemainingTickets--;
             ticket.IsPaid = true;
             await _context.SaveChangesAsync();
             return true;

@@ -14,6 +14,8 @@ namespace dp.Data
 
         public DbSet<Payment> Payments { get; set; }
 
+        public DbSet<TicketCart> TicketCarts { get; set; }
+
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base (options) { }
 
     }

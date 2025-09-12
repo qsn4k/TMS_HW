@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dp.Data;
 
@@ -11,9 +12,11 @@ using dp.Data;
 namespace dp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250912001223_Sixth")]
+    partial class Sixth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,25 +50,6 @@ namespace dp.Migrations
                     b.HasIndex("TicketId");
 
                     b.ToTable("Payments");
-                });
-
-            modelBuilder.Entity("dp.Data.Models.TicketCart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TicketCarts");
                 });
 
             modelBuilder.Entity("dp.Models.Event", b =>
@@ -125,17 +109,12 @@ namespace dp.Migrations
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TicketCartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("TicketCartId");
 
                     b.HasIndex("UserId");
 
@@ -190,10 +169,6 @@ namespace dp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("dp.Data.Models.TicketCart", null)
-                        .WithMany("Tickets")
-                        .HasForeignKey("TicketCartId");
-
                     b.HasOne("dp.Models.User", "User")
                         .WithMany("Tickets")
                         .HasForeignKey("UserId")
@@ -203,11 +178,6 @@ namespace dp.Migrations
                     b.Navigation("Event");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("dp.Data.Models.TicketCart", b =>
-                {
-                    b.Navigation("Tickets");
                 });
 
             modelBuilder.Entity("dp.Models.Event", b =>

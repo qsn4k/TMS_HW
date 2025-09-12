@@ -16,6 +16,8 @@ namespace dp.Models
 
         public bool IsPaid { get; set; }
 
+        public decimal Price { get; set; }
+
         // Навигационные свойства
         public Event Event { get; set; }
         public User User { get; set; }
