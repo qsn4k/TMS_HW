@@ -90,9 +90,19 @@ namespace dp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ConfirmPayment(int ticketCartId)
         {
-            var ticketCart = await _ticketCartService.ConfirmPaymentAsync(ticketCartId);
+            await _ticketCartService.ConfirmPaymentAsync(ticketCartId);
+            var ticketCart = await _ticketCartService.GetCartByIdAsync(ticketCartId);
+            var tickets = ticketCart.Tickets;
+            if(tickets != null) 
+            {
+                foreach (var t in tickets)
+                {
+                    await _ticketService.ConfirmPaymentAsync(t.Id);
+                }
+            } else Console.WriteLine("ErrorNULL");
 
-            return RedirectToAction("MyTickets");
+                return RedirectToAction("MyTickets", "Ticket");
+        
         }
     }
 }

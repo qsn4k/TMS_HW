@@ -21,7 +21,7 @@ namespace dp.Services
         }
 
 
-        public async Task<TicketCart> GetTicketByIdAsync(int id)
+        public async Task<TicketCart> GetCartByIdAsync(int id)
         {
             return await _context.TicketCarts.Include(c => c.Tickets)
                         .ThenInclude(t => t.Event)
@@ -47,7 +47,9 @@ namespace dp.Services
 
         public async Task<bool> ConfirmPaymentAsync(int ticketCartId)
         {
-            var ticketCart = await _context.TicketCarts.FindAsync(ticketCartId);
+            var ticketCart = await _context.TicketCarts.Include(c => c.Tickets)
+                        .ThenInclude(t => t.Event)
+                        .FirstOrDefaultAsync(c => c.Id == ticketCartId);
             if (ticketCart == null) return false;
 
             foreach (var ticket in ticketCart.Tickets)
@@ -60,8 +62,6 @@ namespace dp.Services
             return true;
         }
 
-        public async Task<TicketCart> GetCartByIdAsync(int id)
-            => await _context.TicketCarts.FindAsync(id);
     }
 }
 

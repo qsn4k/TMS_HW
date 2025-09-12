@@ -1,44 +1,48 @@
 ﻿@using dp.ViewModels
-@model TicketEventViewModel
+@model TicketCartViewModel
 @{
-    ViewData["Title"] = "Покупка билетов";
+    ViewData["Title"] = "Корзина билетов";
 }
 
 <div class="alert alert-success mt-4">
-    <h2>🎉 Покупка ожидается...</h2>
-    <p>Вы успешно добавили билеты на мероприятие <strong>@Model.Event.Title</strong> в корзину.</p>
+    <h2>🛒 Билеты добавлены в корзину</h2>
+    <p>Вы добавили <strong>@Model.Quantity</strong> билетов на мероприятие <strong>@Model.EventTitle</strong>.</p>
 </div>
 
 <table class="table table-bordered mt-3">
     <tr>
         <th>Дата</th>
-        <td>@Model.Event.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
+        <td>@Model.EventDateTime.ToString("dd.MM.yyyy HH:mm")</td>
     </tr>
     <tr>
         <th>Место</th>
-        <td>@Model.Event.Location</td>
+        <td>@Model.Location</td>
     </tr>
     <tr>
-        <th>Цена</th>
-        <td>@Model.Event.Price.ToString("C")</td>
+        <th>Количество билетов</th>
+        <td>@Model.Quantity</td>
+    </tr>
+    <tr>
+        <th>Общая стоимость</th>
+        <td>@Model.TotalPrice.ToString("C")</td>
     </tr>
     <tr>
         <th>Статус оплаты</th>
-        <td>@(Model.Ticket.IsPaid ? "✅ Оплачен" : "⏳ Ожидает оплаты")</td>
+        <td>@(Model.IsPaid ? "✅ Оплачено" : "⏳ Ожидает оплаты")</td>
     </tr>
 </table>
 
-@if (!Model.Ticket.IsPaid)
+@if (!Model.IsPaid)
 {
-    <form asp-action="ConfirmPayment" method="post">
+    <form asp-action="ConfirmPayment" asp-route-id="@Model.CartId" method="post">
         @Html.AntiForgeryToken()
-        <input type="hidden" name="ticketId" value="@Model.Ticket.Id" />
-        <button type="submit" class="btn btn-success">Оплатить сейчас</button>
+        <input type="hidden" name="ticketCartId" value="@Model.CartId" />
+        <button type="submit" class="btn btn-success">Оплатить корзину</button>
     </form>
 }
 else
 {
-    <div class="alert alert-info mt-3">Ваш билет уже оплачен. Спасибо!</div>
+    <div class="alert alert-info mt-3">Корзина уже оплачена. Спасибо за покупку!</div>
 }
 
 <div class="mt-4">
