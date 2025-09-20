@@ -16,7 +16,19 @@
             <tr>
                 <td>@ticket.Event.Title</td>
                 <td>@ticket.Event.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
-                <td>@(ticket.IsPaid ? "Оплачено" : "Ожидает оплаты")</td>
+                @{
+                    if (ticket.IsPaid)
+                    {
+                        <td>Оплачено</td>
+                    }
+                    else
+                    {
+                        <td>
+                            <a asp-action="Confirm" asp-route-id="@ticket.Id">Оплатить</a>
+                        </td>
+                    }
+                }
+                    <td>@(ticket.IsPaid ? "Оплачено" : "Ожидает оплаты")</td>
             </tr>
         }
     </tbody>

@@ -46,6 +46,8 @@
         <span asp-validation-for="Price" class="text-danger"></span>
     </div>
 
+    <input type = "hidden" asp-for="RemainingTickets"/>
+    
     <button type="submit" class="btn btn-success">Сохранить</button>
     <button asp-action="Delete" asp-route-id="@Model.Id">Удалить</button>
     @* как сделать так, чтобы не явно указывать на Id, а чтобы он брал его из того, что мы дали.

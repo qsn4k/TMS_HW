@@ -1,4 +1,4 @@
-﻿@model List<Event>
+﻿@model IEnumerable<Event>
 
 @{
     var role = ViewContext.HttpContext.Session.GetString("Role");
@@ -9,10 +9,32 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Название</th>
-            <th>Дата</th>
-            <th>Место</th>
-            <th>Цена</th>
+            <th>
+                <a asp-action="Index" asp-route-sort="@ViewBag.SortTitle">
+                    Название
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sort="@ViewBag.SortDateTime">
+                    Дата
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sort = "@ViewBag.SortLocation">
+                    Место
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sort = "@ViewBag.SortPrice">
+                    Цена
+                </a>
+            </th>
+            <th>Всего билетов</th>
+            <th>
+                <a asp-action="Index" asp-route-sort ="@ViewBag.SortRemaining">
+                    Доступно билетов
+                </a>
+            </th>
             <th></th>
             <th></th>
         </tr>
@@ -25,6 +47,8 @@
                 <td>@ev.DateTime.ToString("dd.MM.yyyy HH:mm")</td>
                 <td>@ev.Location</td>
                 <td>@ev.Price.ToString("C")</td>
+                <td>@ev.TotalTickets</td>
+                <td>@ev.RemainingTickets</td>
                 <td>
                     <a asp-action="Details" asp-route-id="@ev.Id">Подробнее</a>
                 </td>

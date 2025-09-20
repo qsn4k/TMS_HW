@@ -22,4 +22,36 @@ public class TicketController : Controller
         var tickets = await _ticketService.GetTicketsByUserIdAsync(userId.Value);
         return View(tickets);
     }
+
+    public async Task<IActionResult> Confirm(int id)
+    {
+        var ticket = await _ticketService.GetTicketByIdAsync(id);
+        if (ticket == null)
+            return NotFound();
+
+        var ev = await _eventService.GetEventByIdAsync(ticket.EventId);
+
+        var ticketViewModel = new TicketConfirmViewModel
+        {
+            TicketId = ticket.Id,
+            EventTitle = ev.Title,
+            EventDateTime = ev.DateTime,
+            Location = ev.Location,
+            RemainingTickets = ev.RemainingTickets,
+            Price = ticket.Price,
+            IsPaid = ticket.IsPaid
+        };
+
+        return View(ticketViewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ConfirmPayment(int ticketId)
+    {
+        var tickets = await _ticketService.ConfirmPaymentAsync(ticketId);
+        
+        return RedirectToAction("MyTickets", "Ticket");
+
+    }
 }

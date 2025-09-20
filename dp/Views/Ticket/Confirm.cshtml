@@ -1,0 +1,53 @@
+﻿@using dp.ViewModels
+@model TicketConfirmViewModel
+@{
+    ViewData["Title"] = "Оплата билета";
+}
+
+<div class="alert alert-success mt-4">
+    <h2>🛒 SOLD OUT</h2>
+</div>
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>Дата</th>
+        <td>@Model.EventDateTime.ToString("dd.MM.yyyy HH:mm")</td>
+    </tr>
+    <tr>
+        <th>Место</th>
+        <td>@Model.Location</td>
+    </tr>
+    <tr>
+        <th>Стоимость</th>
+        <td>@Model.Price.ToString("C")</td>
+    </tr>
+    <tr>
+        <th>Статус оплаты</th>
+        <td>@(Model.IsPaid ? "✅ Оплачено" : "⏳ Ожидает оплаты")</td>
+    </tr>
+</table>
+
+@if (!Model.IsPaid)
+{
+    if(Model.RemainingTickets > 1)
+    {
+        <form asp-action="ConfirmPayment" asp-route-id="@Model.TicketId" method="post">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="ticketId" value="@Model.TicketId" />
+            <button type="submit" class="btn btn-success">Оплатить билет</button>
+        </form>
+    }
+    else
+    {
+        <h3>Все билеты выкуплены, вы не успели</h3>
+    }
+}
+else
+{
+    <div class="alert alert-info mt-3">Билет уже оплачена. Спасибо за покупку!</div>
+}
+
+<div class="mt-4">
+    <a asp-action="MyTickets" class="btn btn-outline-primary">📄 Мои билеты</a>
+    <a asp-controller="Event" asp-action="Index" class="btn btn-outline-secondary ms-2">🎫 Все мероприятия</a>
+</div>

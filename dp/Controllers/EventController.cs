@@ -14,10 +14,43 @@ public class EventController : Controller
         _eventService = eventService;
     }
 
-    public async Task<IActionResult> Index()
+    //[HttpGet]
+    //public async Task<IActionResult> Index()
+    //{
+    //    var events = await _eventService.GetAllEventsAsync();
+    //    return View(events);
+    //}
+
+    [HttpGet]
+    public async Task<IActionResult> Index(SortEnum sort = SortEnum.IdAsc)
     {
         var events = await _eventService.GetAllEventsAsync();
-        return View(events);
+
+        ViewBag.SortTitle = sort == SortEnum.TitleAsc ? SortEnum.TitleDesc : SortEnum.TitleAsc;
+        ViewBag.SortDateTime = sort == SortEnum.DateTimeAsc ? SortEnum.DateTimeDesc : SortEnum.DateTimeAsc;
+        ViewBag.SortLocation = sort == SortEnum.LocationAsc ? SortEnum.LocationDesc : SortEnum.LocationAsc;
+        ViewBag.SortRemaining = sort == SortEnum.RemainingAsc ? SortEnum.RemainingDesc : SortEnum.RemainingAsc;
+        ViewBag.SortPrice = sort == SortEnum.PriceAsc ? SortEnum.PriceDesc : SortEnum.PriceAsc;
+
+        var sortEvents = sort switch
+        {
+            SortEnum.IdDesc => events.OrderByDescending(s => s.Id),
+            SortEnum.TitleAsc => events.OrderBy(s => s.Title),
+            SortEnum.TitleDesc => events.OrderByDescending(s => s.Title),
+            SortEnum.DateTimeAsc => events.OrderBy(s => s.DateTime),
+            SortEnum.DateTimeDesc => events.OrderByDescending(s => s.DateTime),
+            SortEnum.LocationAsc => events.OrderBy(s => s.Location),
+            SortEnum.LocationDesc => events.OrderByDescending(s => s.Location),
+            SortEnum.RemainingAsc => events.OrderBy(s => s.RemainingTickets),
+            SortEnum.RemainingDesc => events.OrderByDescending(s => s.RemainingTickets),
+            SortEnum.PriceAsc => events.OrderBy(s => s.Price),
+            SortEnum.PriceDesc => events.OrderByDescending(s => s.Price),
+            _ => events.OrderBy(s => s.Id),
+        };
+
+        
+
+        return View(sortEvents);
     }
 
     public async Task<IActionResult> Details(int id)

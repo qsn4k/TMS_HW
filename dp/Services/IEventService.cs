@@ -13,5 +13,7 @@ namespace dp.Services
         Task UpdateEventAsync(Event ev);
 
         Task DeleteEventAsync(int id);
+
+        
     }
 }

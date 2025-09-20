@@ -2,7 +2,7 @@
 
 namespace dp.ViewModels
 {
-    public class EventEditViewModel /*:IValidatableObject*/
+    public class EventEditViewModel :IValidatableObject
     {
         public int Id { get; set; }
 
@@ -29,15 +29,15 @@ namespace dp.ViewModels
         [Range(0, 10000)]
         public decimal Price { get; set; }
 
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    if(TotalTickets < RemainingTickets)
-        //    {
-        //        yield return new ValidationResult(
-        //        $"Общее количество билетов не может быть меньше остатка ({RemainingTickets})",
-        //        new[] { nameof(TotalTickets) });
-        //    }
-        //}
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (TotalTickets < RemainingTickets)
+            {
+                yield return new ValidationResult(
+                $"Общее количество билетов не может быть меньше остатка ({RemainingTickets})",
+                new[] { nameof(TotalTickets) });
+            }
+        }
     }
 
 }
