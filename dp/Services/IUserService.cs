@@ -11,5 +11,7 @@ namespace dp.Services
         Task<User> GetByIdAsync(int id);
         
         Task<bool> IsAdminAsync(int userId);
+
+        Task<List<User>> GetAllUsers();
     }
 }

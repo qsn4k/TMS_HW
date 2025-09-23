@@ -20,6 +20,12 @@
                             <a class="nav-link" asp-controller="Event" asp-action="Create">Добавить мероприятие</a>
                         </li>
                     }
+                    @if (Context.Session.GetString("Role") == "Admin")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="User" asp-action="ListUser">Список пользователей</a>
+                        </li>
+                    }
                     @if (Context.Session.GetInt32("UserId") != null)
                     {
                         <li class="nav-item">

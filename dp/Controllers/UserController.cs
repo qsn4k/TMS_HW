@@ -66,4 +66,10 @@ public class UserController : Controller
         HttpContext.Session.Clear();
         return RedirectToAction("Index", "Event");
     }
+
+    public async Task<IActionResult> ListUser()
+    {
+        var users = await _userService.GetAllUsers();
+        return View(users);
+    }
 }

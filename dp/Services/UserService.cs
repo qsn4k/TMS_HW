@@ -50,6 +50,11 @@ namespace dp.Services
             var hash = sha.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
+
+        public async Task<List<User>> GetAllUsers()
+            => await _context.Users.ToListAsync();
+
+
     }
 
 }
