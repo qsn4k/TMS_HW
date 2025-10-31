@@ -19,6 +19,8 @@ namespace BookTicketBackEnd
             builder.Services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
 
 
@@ -26,6 +28,8 @@ namespace BookTicketBackEnd
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
